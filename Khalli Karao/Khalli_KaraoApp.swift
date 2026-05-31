@@ -11,7 +11,7 @@ import SwiftUI
 struct Khalli_KaraoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
     }
 }
