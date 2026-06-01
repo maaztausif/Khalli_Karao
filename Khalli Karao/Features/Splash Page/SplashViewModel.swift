@@ -20,7 +20,7 @@ final class SplashViewModel: ObservableObject {
                 forKey: "accessToken"
             )
 
-            self.destination = token != nil ? .home : .login
+            self.destination = token != nil ? .home : .welcomeScreen
         }
     }
 }

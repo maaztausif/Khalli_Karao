@@ -8,7 +8,8 @@
 enum AppRoute {
     case splash
     case login
-//    case register
+    case register
     case home
+    case welcomeScreen
 //    case profile
 }

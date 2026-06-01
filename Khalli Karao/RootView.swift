@@ -22,18 +22,18 @@ struct RootView: View {
         case .login:
             LoginView()
                 .environmentObject(router)
-//
-//        case .register:
-////            RegisterView()
-////                .environmentObject(router)
-//
+
         case .home:
             HomeView()
                 .environmentObject(router)
-//
-//        case .profile:
-////            ProfileView()
-////                .environmentObject(router)
+
+        case .register:
+            WelcomeView()
+                .environmentObject(router)
+            
+        case .welcomeScreen:
+            WelcomeView()
+                .environmentObject(router)
         }
     }
 }
