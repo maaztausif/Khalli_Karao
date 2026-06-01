@@ -28,7 +28,7 @@ struct RootView: View {
                 .environmentObject(router)
 
         case .register:
-            WelcomeView()
+            SignupView()
                 .environmentObject(router)
             
         case .welcomeScreen:

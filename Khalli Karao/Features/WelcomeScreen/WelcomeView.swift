@@ -49,11 +49,22 @@ struct WelcomeView: View {
                 
     
                 RectangleButton(
-                    title: "Continue",
+                    title: "Get Started ->",
                     backgroundColor: Color(hex: "#ECBB40"),
-                    textColor: .black
+                    textColor: .black,
+                    borderColor: .black
                 ) {
                     viewModel.gotoLoginPage()
+                }
+                .padding(.top,30)
+                
+                RectangleButton(
+                    title: "I already have an account",
+                    backgroundColor: Color.clear,
+                    textColor: .white,
+                    borderColor: .gray
+                ) {
+                    viewModel.gotoSignupPage()
                 }
                 .padding(.top,30)
             }

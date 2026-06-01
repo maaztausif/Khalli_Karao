@@ -12,6 +12,7 @@ struct RectangleButton: View {
     let title: String
     let backgroundColor: Color
     let textColor: Color
+    let borderColor: Color
     let action: () -> Void
 
     var body: some View {
@@ -22,10 +23,16 @@ struct RectangleButton: View {
                 .foregroundColor(textColor)
                 .frame(maxWidth: .infinity)
                 .frame(height: 56)
-                .background(backgroundColor)
-                .cornerRadius(12)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(backgroundColor)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(borderColor, lineWidth: 2)
+                )
+                .padding([.leading, .trailing],50)
         }
-        .padding([.leading, .trailing],20)
     }
 }
 
@@ -33,7 +40,7 @@ struct RectangleButton: View {
     RectangleButton(
         title: "Get Started",
         backgroundColor: .yellow,
-        textColor: .black,
+        textColor: .black, borderColor: .black,
         action: {}
     )
     .padding()
