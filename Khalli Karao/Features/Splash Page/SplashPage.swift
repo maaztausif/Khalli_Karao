@@ -17,20 +17,11 @@ struct SplashView: View {
 
         GeometryReader { geometry in
 
-            let circleSize = geometry.size.width * 0.5
-
             VStack(spacing: 15) {
 
-                ZStack {
-
-                    Circle()
-                        .fill(Color(hex: "#ECBB40"))
-                        .frame(width: circleSize, height: circleSize)
-
-                    Text("KHALLI\nKARAO!")
-                        .font(.system(size: 20, weight: .black))
-                        .multilineTextAlignment(.center)
-                }
+                KhalliKaraoView(
+                    size: geometry.size.width * 0.5
+                )
 
                 Text("Khalli Karao!")
                     .font(.system(size: 25, weight: .black))
@@ -55,3 +46,9 @@ struct SplashView: View {
         }
     }
 }
+
+    #Preview {
+        SplashView()
+            .environmentObject(AppRouter())
+
+    }

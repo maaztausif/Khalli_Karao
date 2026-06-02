@@ -19,19 +19,18 @@ struct RootView: View {
             SplashView()
                 .environmentObject(router)
 
-        case .login:
-            LoginView()
-                .environmentObject(router)
+        case .auth:
+            AuthContainerView()
 
         case .home:
             HomeView()
                 .environmentObject(router)
 
-        case .register:
-            SignupView()
-                .environmentObject(router)
+//        case .register:
+//            SignupView()
+//                .environmentObject(router)
             
-        case .welcomeScreen:
+        case .welcome:
             WelcomeView()
                 .environmentObject(router)
         }

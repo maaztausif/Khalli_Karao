@@ -13,10 +13,10 @@ final class WelcomeViewModel: ObservableObject {
     @Published var destination: AppRoute?
 
     func gotoLoginPage() {
-        self.destination = .login
+        destination = .auth(.login)
     }
     
     func gotoSignupPage() {
-        self.destination = .register
+        destination = .auth(.signup)
     }
 }

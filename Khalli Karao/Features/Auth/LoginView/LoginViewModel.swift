@@ -9,14 +9,21 @@ import Foundation
 import Combine
 
 final class LoginViewModel: ObservableObject {
-
-    private let router: AppRouter
-
-    init(router: AppRouter) {
-        self.router = router
+    
+    @Published var destination: AuthRoute?
+    @Published var email = ""
+    @Published var password = ""
+    
+    func forgotPasswordTapped() {
+        destination = .forgotPassword
     }
-
-    func loginSuccess() {
-//        router.navigate(to: .home)
+    
+    func signupTapped() {
+        destination = .signup
     }
+    
+    func login() {
+          print("Email: \(email)")
+          print("Password: \(password)")
+      }
 }
