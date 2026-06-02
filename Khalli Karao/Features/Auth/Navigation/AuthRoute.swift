@@ -9,8 +9,18 @@ import Foundation
 
 enum AuthRoute: Hashable {
     case login
-    case signup
+    case signup(SignupSource)
     case forgotPassword
-    case otp
+    case otp(otpSource)
     case resetPassword
+}
+
+enum SignupSource: Hashable {
+    case welcome
+    case login
+}
+
+enum otpSource:Hashable{
+    case forgetPassword
+    case signUp
 }

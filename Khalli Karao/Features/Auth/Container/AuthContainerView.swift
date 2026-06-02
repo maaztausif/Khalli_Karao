@@ -7,15 +7,28 @@
 
 import SwiftUI
 
+
 struct AuthContainerView: View {
 
-    @StateObject private var router = AuthRouter()
+    let initialRoute: AuthRoute
+
+    @StateObject private var router: AuthRouter
+
+    init(initialRoute: AuthRoute) {
+        self.initialRoute = initialRoute
+
+        _router = StateObject(
+            wrappedValue: AuthRouter(
+                rootRoute: initialRoute
+            )
+        )
+    }
 
     var body: some View {
 
         NavigationStack(path: $router.path) {
 
-            LoginView()
+            rootView()
                 .navigationDestination(for: AuthRoute.self) { route in
 
                     switch route {
@@ -23,14 +36,20 @@ struct AuthContainerView: View {
                     case .login:
                         LoginView()
 
-                    case .signup:
-                        SignupView()
+                    case .signup(let source):
+                        SignupView(
+                            viewModel: SignupViewModel(
+                                source: source
+                            )
+                        )
 
                     case .forgotPassword:
                         ForgotPasswordView()
 
-                    case .otp:
-                        OTPView()
+                    case .otp(let source):
+                        OTPView(
+                            viewModel:OtpViewModel(otpSource :source)
+                        )
 
                     case .resetPassword:
                         ResetPasswordView()
@@ -38,5 +57,33 @@ struct AuthContainerView: View {
                 }
         }
         .environmentObject(router)
+    }
+
+    @ViewBuilder
+    private func rootView() -> some View {
+
+        switch router.rootRoute {
+
+        case .login:
+            LoginView()
+
+        case .signup(let source):
+            SignupView(
+                viewModel: SignupViewModel(
+                    source: source
+                )
+            )
+
+        case .forgotPassword:
+            ForgotPasswordView()
+
+        case .otp(let source):
+            OTPView(viewModel: OtpViewModel(
+                otpSource: source
+            ))
+
+        case .resetPassword:
+            ResetPasswordView()
+        }
     }
 }

@@ -50,7 +50,7 @@ struct LoginView: View {
             HStack{
                 Spacer()
                 Button(action: {
-//                    viewModel.login()
+                    viewModel.forgotPasswordTapped()
                 }) {
                     Text("Forget Password?")
                         .foregroundColor(.yellow)
@@ -111,5 +111,5 @@ struct LoginView: View {
 
 #Preview {
     LoginView()
-        .environmentObject(AuthRouter())
+        .environmentObject(AuthRouter(rootRoute: AuthRoute.login))
 }

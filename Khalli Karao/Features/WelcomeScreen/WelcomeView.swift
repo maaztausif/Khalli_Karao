@@ -54,7 +54,7 @@ struct WelcomeView: View {
                     textColor: .black,
                     borderColor: .black
                 ) {
-                    viewModel.gotoLoginPage()
+                    viewModel.gotoSignupPage()
                 }
                 .padding(.top,30)
                 
@@ -64,7 +64,7 @@ struct WelcomeView: View {
                     textColor: .white,
                     borderColor: .gray
                 ) {
-                    viewModel.gotoSignupPage()
+                    viewModel.gotoLoginPage()
                 }
                 .padding(.top,30)
             }
@@ -73,6 +73,7 @@ struct WelcomeView: View {
         }
         .background(Color.black)
         .onReceive(viewModel.$destination.compactMap { $0 }) { route in
+            print("Welcome Route:", route)
                 router.navigate(to: route)
             }
 

@@ -17,6 +17,6 @@ final class WelcomeViewModel: ObservableObject {
     }
     
     func gotoSignupPage() {
-        destination = .auth(.signup)
+        destination = .auth(.signup(.welcome))
     }
 }

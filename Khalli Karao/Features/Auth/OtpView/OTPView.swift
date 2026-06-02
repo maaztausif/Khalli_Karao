@@ -9,7 +9,12 @@ import SwiftUI
 
 struct OTPView: View {
 
-    @EnvironmentObject var authRouter: AuthRouter
+    @EnvironmentObject var authRouter:AuthRouter
+    @StateObject private var viewModel:OtpViewModel
+    
+    init(viewModel:OtpViewModel){
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
 

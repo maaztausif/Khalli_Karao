@@ -25,7 +25,7 @@ struct CustomTextField: View {
         TextField(title, text: $text)
             .foregroundColor(textColor)
             .padding()
-            .frame(height: 56)
+            .frame(height: 50)
             .background(backgroundColor)
             .focused($isFocused)
             .overlay(

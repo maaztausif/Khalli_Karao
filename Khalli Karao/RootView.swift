@@ -19,19 +19,23 @@ struct RootView: View {
             SplashView()
                 .environmentObject(router)
 
-        case .auth:
-            AuthContainerView()
+        case .welcome:
+            WelcomeView()
+                .environmentObject(router)
+                .onAppear {
+                            print("Showing Welcome")
+                        }
+
+        case .auth(let initialRoute):
+            AuthContainerView(
+                initialRoute: initialRoute
+            )
+            .onAppear {
+                       print("Showing Auth:", initialRoute)
+                   }
 
         case .home:
             HomeView()
-                .environmentObject(router)
-
-//        case .register:
-//            SignupView()
-//                .environmentObject(router)
-            
-        case .welcome:
-            WelcomeView()
                 .environmentObject(router)
         }
     }

@@ -19,7 +19,7 @@ final class LoginViewModel: ObservableObject {
     }
     
     func signupTapped() {
-        destination = .signup
+        destination = .signup(.login)
     }
     
     func login() {

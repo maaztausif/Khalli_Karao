@@ -11,7 +11,12 @@ import Combine
 final class AuthRouter: ObservableObject {
 
     @Published var path = NavigationPath()
-
+    @Published var rootRoute: AuthRoute = .login
+    
+    init(rootRoute: AuthRoute) {
+          self.rootRoute = rootRoute
+      }
+    
     func push(_ route: AuthRoute) {
         path.append(route)
     }
@@ -24,4 +29,10 @@ final class AuthRouter: ObservableObject {
     func popToRoot() {
         path = NavigationPath()
     }
+    
+    func replaceRoot(with route: AuthRoute) {
+        rootRoute = route
+        path = NavigationPath()
+    }
+    
 }
