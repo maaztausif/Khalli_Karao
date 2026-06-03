@@ -24,7 +24,7 @@ final class SignupViewModel: ObservableObject {
     @Published var shouldGoBack = false
     
     func createAcount() {
-        destination = .forgotPassword
+        destination = .otp(.signUp)
     }
     
     func gotoSignIn() {

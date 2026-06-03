@@ -79,7 +79,7 @@ struct SignupView: View {
                         }
                     )
                     RectangleButton(title: "Create Account", backgroundColor: Color.yellow, textColor: Color.black, borderColor: Color.clear) {
-                        //viewmodel
+                        viewModel.createAcount()
                     }
                     
                     HStack{
@@ -114,7 +114,12 @@ struct SignupView: View {
                 
                 print("Navigating to: \(route)")
                 
-                authRouter.replaceRoot(with: .login)
+                if route == .otp(.signUp){
+                    authRouter.push(route)
+                }else{
+                    authRouter.replaceRoot(with: .login)
+
+                }
             }
         }
     }

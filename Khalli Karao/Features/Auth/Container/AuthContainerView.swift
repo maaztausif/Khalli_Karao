@@ -48,7 +48,7 @@ struct AuthContainerView: View {
 
                     case .otp(let source):
                         OTPView(
-                            viewModel:OtpViewModel(otpSource :source)
+                            viewModel:OtpViewModel(source :source)
                         )
 
                     case .resetPassword:
@@ -79,7 +79,7 @@ struct AuthContainerView: View {
 
         case .otp(let source):
             OTPView(viewModel: OtpViewModel(
-                otpSource: source
+                source: source
             ))
 
         case .resetPassword:

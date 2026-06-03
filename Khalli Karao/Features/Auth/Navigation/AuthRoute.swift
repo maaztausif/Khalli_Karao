@@ -20,7 +20,7 @@ enum SignupSource: Hashable {
     case login
 }
 
-enum otpSource:Hashable{
+enum otpSource: Hashable{
     case forgetPassword
     case signUp
 }

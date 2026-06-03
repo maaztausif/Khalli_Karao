@@ -48,7 +48,7 @@ struct ForgotPasswordView: View {
                     )
                     
                     RectangleButton(title: "Set Resend Code ->", backgroundColor: Color.yellow, textColor: Color.black, borderColor: Color.clear) {
-                        //viewmodel
+                        viewModel.gotoOtpPage()
                     }
                     .padding(.top)
                     

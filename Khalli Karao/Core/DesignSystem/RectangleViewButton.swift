@@ -14,7 +14,7 @@ struct RectangleButton: View {
     let textColor: Color
     let borderColor: Color
     let action: () -> Void
-
+//    var isDisabled = false
     var body: some View {
         Button(action: action) {
 
@@ -33,6 +33,7 @@ struct RectangleButton: View {
                 )
                 .padding([.leading, .trailing],50)
         }
+//        .disabled(isDisabled)
     }
 }
 
