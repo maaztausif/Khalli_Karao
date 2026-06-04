@@ -23,8 +23,32 @@ final class SignupViewModel: ObservableObject {
     @Published var confirmPassword = ""
     @Published var shouldGoBack = false
     
+    
+    var hasMinLength: Bool {
+        password.count >= 8
+    }
+
+    var hasNoSpecialCharacters: Bool {
+        password.range(
+            of: "[^A-Za-z0-9]",
+            options: .regularExpression
+        ) == nil
+    }
+
+    var passwordsMatch: Bool {
+        !confirmPassword.isEmpty &&
+        password == confirmPassword
+    }
+    
+    
     func createAcount() {
-        destination = .otp(.signUp)
+        if let error = validatePassword(password: self.password, confirmPassword: self.confirmPassword) {
+            print(error)
+        } else {
+            destination = .otp(.signUp)
+
+            print("Valid")
+        }
     }
     
     func gotoSignIn() {

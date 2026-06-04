@@ -36,7 +36,7 @@ struct LoginView: View {
                            text: $viewModel.email,
                            onFocus: {
                                print("Email focused")
-                           }
+                           }, isSecureField: false
                        )
             TextLabelView(text: "Password")
                 .padding(.leading, 20)
@@ -45,7 +45,7 @@ struct LoginView: View {
                            text: $viewModel.password,
                            onFocus: {
                                print("Email focused")
-                           }
+                           }, isSecureField: true
                        )
             HStack{
                 Spacer()
@@ -75,8 +75,8 @@ struct LoginView: View {
                     .frame(width: 50, height: 1)
                 Spacer()
             }
-            RectangleButton(title: "Continue with Patreon", backgroundColor: Color.yellow, textColor: Color.black, borderColor: Color.clear) {
-                //viewmodel
+            RectangleButton(title: "Continue with Patreon", backgroundColor: Color.red, textColor: Color.white, borderColor: Color.clear,image:"Icon_Patreon",isImage: true) {
+                viewModel.showPatreonSheet = true
             }
             
             HStack{
@@ -105,6 +105,12 @@ struct LoginView: View {
             print("Navigating to: \(route)")
 
             authRouter.push(route)
+        }
+        .sheet(isPresented: $viewModel.showPatreonSheet) {
+
+            PatreonBottomSheet()
+                .presentationDetents([.height(500)])
+                .presentationDragIndicator(.visible)
         }
     }
 }

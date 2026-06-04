@@ -44,7 +44,7 @@ struct ForgotPasswordView: View {
                         text: $viewModel.email,
                         onFocus: {
                             print("Email focused")
-                        }
+                        }, isSecureField: false
                     )
                     
                     RectangleButton(title: "Set Resend Code ->", backgroundColor: Color.yellow, textColor: Color.black, borderColor: Color.clear) {

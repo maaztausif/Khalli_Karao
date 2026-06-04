@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <radialGradient id="patreonBg" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#FF6B6B"/>
+      <stop offset="100%" stop-color="#E8002C"/>
+    </radialGradient>
+    <radialGradient id="circleGrad" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.0"/>
+    </radialGradient>
+    <filter id="pGlow">
+      <feGaussianBlur stdDeviation="20" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="12" stdDeviation="28" flood-color="#C00020" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect width="1024" height="1024" rx="224" ry="224" fill="url(#patreonBg)"/>
+
+  <!-- Highlight overlay -->
+  <rect width="1024" height="1024" rx="224" ry="224" fill="url(#circleGrad)"/>
+
+  <!-- Subtle glow -->
+  <circle cx="380" cy="380" r="260" fill="white" opacity="0.07" filter="url(#pGlow)"/>
+
+  <!-- Patreon "P" lettermark -->
+  <!-- Circle part of P -->
+  <circle cx="520" cy="400" r="190" fill="white" filter="url(#shadow)"/>
+  <circle cx="520" cy="400" r="130" fill="url(#patreonBg)"/>
+
+  <!-- Vertical bar of P -->
+  <rect x="272" y="210" width="110" height="604" rx="55" ry="55" fill="white" filter="url(#shadow)"/>
+
+  <!-- Connecting bar of P -->
+  <rect x="272" y="210" width="258" height="110" rx="0" fill="white"/>
+  <rect x="272" y="480" width="258" height="110" rx="0" fill="white"/>
+
+  <!-- Bottom label: "Verified Supporter" -->
+  <rect x="212" y="790" width="600" height="64" rx="32" fill="rgba(0,0,0,0.2)"/>
+  <text
+    x="512" y="833"
+    font-family="Arial, sans-serif"
+    font-weight="700"
+    font-size="32"
+    fill="rgba(255,255,255,0.85)"
+    text-anchor="middle"
+    letter-spacing="2"
+  >PATREON SUPPORTER</text>
+</svg>

@@ -69,6 +69,13 @@ final class OtpViewModel:ObservableObject{
     
     func verifyOTP() {
         print("OTP Entered: \(otp)")
+        switch source {
+        case .forgetPassword:
+            destination = .restPasswordSuccess
+        case .signUp:
+            print("Qwe")
+//            destination = .home
+        }
 
     }
     

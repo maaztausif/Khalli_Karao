@@ -2,30 +2,65 @@
 //  ResetPasswordView.swift
 //  Khalli Karao
 //
-//  Created by Maaz Bin Tausif on 02.06.26.
+//  Created by Maaz Bin Tausif on 03.06.26.
 //
 
 import SwiftUI
+import Combine
 
-struct ResetPasswordView: View {
+struct ResetPasswordView:View{
     
-    @EnvironmentObject var authRouter: AuthRouter
-    @ObservedObject var viewModel = ResetPasswordViewModel()
+    @StateObject var viewModel = ResetPasswordViewModel()
     
-    var body: some View {
-        
-        VStack {
-            CircularView()
-            Text("Password Reset!")
-            Text("Your password has been updated successfully. You can now sign in with your new password.")
-                .padding(10)
-                .padding([.trailing,.leading],15)
-                .multilineTextAlignment(.center)
-                .foregroundColor(.gray)
-            
-            RectangleButton(title: "Goto Sign In ->", backgroundColor: .yellow, textColor: .black, borderColor: .clear) {
-                authRouter.replaceRoot(with: .login)
+    var body: some View{
+        GeometryReader { geometry in
+            VStack{
+                KhalliKaraoView(size: geometry.size.width*0.3)
+                    .padding(.top,50)
+                Text("Reset Password!")
+                    .font(.system(size: 30, weight: .bold, design: .rounded))
+                Text("Choose a strong new password.")
+                    .font(.system(size: 18, weight: .regular, design: .rounded))
+                    .foregroundStyle(.gray)
+                    .multilineTextAlignment(.center)
+                    .padding(.top)
+                    .padding(.horizontal, 30)
+                    .lineLimit(nil)
+                
+                TextLabelView(text: "New Password")
+                    .padding([.leading,.trailing],20)
+                    .padding(.top,30)
+                CustomTextField(title: "New Password", text: $viewModel.password,isSecureField: true)
+                    .padding([.leading,.trailing])
+
+                TextLabelView(text: "Confirm Password")
+                    .padding([.leading,.trailing],20)
+
+                CustomTextField(title: "Confirm Password", text: $viewModel.password,isSecureField: true)
+                    .padding([.leading,.trailing])
+
+                VStack(alignment: .leading) {
+
+                    PasswordRequirementView(
+                        text: "At least 8 characters",
+                        isValid: viewModel.hasMinLength
+                    )
+
+                    PasswordRequirementView(
+                        text: "No special characters",
+                        isValid: !viewModel.hasNoSpecialCharacters
+                    )
+
+                    PasswordRequirementView(
+                        text: "Passwords match",
+                        isValid: viewModel.passwordsMatch
+                    )
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 10)
+                Spacer()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }

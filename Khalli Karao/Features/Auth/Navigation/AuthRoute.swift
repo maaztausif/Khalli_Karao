@@ -13,6 +13,8 @@ enum AuthRoute: Hashable {
     case forgotPassword
     case otp(otpSource)
     case resetPassword
+    case restPasswordSuccess
+    case connectToPatreon
 }
 
 enum SignupSource: Hashable {

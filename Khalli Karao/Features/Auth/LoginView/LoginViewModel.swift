@@ -14,6 +14,8 @@ final class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     
+    @Published var showPatreonSheet = false
+    
     func forgotPasswordTapped() {
         destination = .forgotPassword
     }
@@ -26,4 +28,12 @@ final class LoginViewModel: ObservableObject {
           print("Email: \(email)")
           print("Password: \(password)")
       }
+    
+    func gotoHome(){
+        if isValidEmail(email) && (validatePassword(password: password, confirmPassword: password) != nil){
+            
+        }
+    }
+    
+    
 }

@@ -53,6 +53,10 @@ struct AuthContainerView: View {
 
                     case .resetPassword:
                         ResetPasswordView()
+                    case .restPasswordSuccess:
+                        ResetPasswordSuccessView()
+                    case .connectToPatreon:
+                        ConnectToPatreonView()
                     }
                 }
         }
@@ -84,6 +88,11 @@ struct AuthContainerView: View {
 
         case .resetPassword:
             ResetPasswordView()
+            
+        case .restPasswordSuccess:
+            ResetPasswordSuccessView()
+        case .connectToPatreon:
+            ConnectToPatreonView()
         }
     }
 }

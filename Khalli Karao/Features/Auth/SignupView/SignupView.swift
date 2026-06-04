@@ -47,8 +47,7 @@ struct SignupView: View {
                         title: "Full Name",
                         text: $viewModel.fullName,
                         onFocus: {
-                            print("Email focused")
-                        }
+                        }, isSecureField: false
                     )
                     TextLabelView(text: "Email Address")
                         .padding([.leading,.top],20)
@@ -57,8 +56,7 @@ struct SignupView: View {
                         title: "Email",
                         text: $viewModel.email,
                         onFocus: {
-                            print("Email focused")
-                        }
+                        }, isSecureField: false
                     )
                     TextLabelView(text: "Password")
                         .padding(.leading, 20)
@@ -66,18 +64,37 @@ struct SignupView: View {
                         title: "Password",
                         text: $viewModel.password,
                         onFocus: {
-                            print("Email focused")
-                        }
+                        }, isSecureField: true
                     )
                     TextLabelView(text: "Confirm Password")
                         .padding(.leading, 20)
                     CustomTextField(
-                        title: "Password",
+                        title: "Confirm Password",
                         text: $viewModel.confirmPassword,
                         onFocus: {
-                            print("Email focused")
-                        }
+                        }, isSecureField: true
                     )
+                    
+                    VStack(alignment: .leading) {
+
+                        PasswordRequirementView(
+                            text: "At least 8 characters",
+                            isValid: viewModel.hasMinLength
+                        )
+
+                        PasswordRequirementView(
+                            text: "No special characters",
+                            isValid: !viewModel.hasNoSpecialCharacters
+                        )
+
+                        PasswordRequirementView(
+                            text: "Passwords match",
+                            isValid: viewModel.passwordsMatch
+                        )
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 10)
+                    
                     RectangleButton(title: "Create Account", backgroundColor: Color.yellow, textColor: Color.black, borderColor: Color.clear) {
                         viewModel.createAcount()
                     }

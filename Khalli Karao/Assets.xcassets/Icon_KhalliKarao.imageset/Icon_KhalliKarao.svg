@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <radialGradient id="yg" cx="45%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#FFD000"/>
+      <stop offset="100%" stop-color="#F5A800"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" rx="220" ry="220" fill="url(#yg)"/>
+
+  <!-- Subtle inner highlight -->
+  <ellipse cx="400" cy="300" rx="260" ry="160" fill="white" opacity="0.07"/>
+
+  <!-- KHALLI -->
+  <text
+    x="512"
+    y="460"
+    font-family="Arial Black, Helvetica Neue, Arial, sans-serif"
+    font-weight="900"
+    font-size="200"
+    fill="#111111"
+    text-anchor="middle"
+    letter-spacing="-4"
+  >KHALLI</text>
+
+  <!-- KARAO! -->
+  <text
+    x="512"
+    y="660"
+    font-family="Arial Black, Helvetica Neue, Arial, sans-serif"
+    font-weight="900"
+    font-size="200"
+    fill="#111111"
+    text-anchor="middle"
+    letter-spacing="-4"
+  >KARAO!</text>
+</svg>
