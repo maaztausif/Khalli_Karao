@@ -11,3 +11,9 @@ enum AppRoute {
     case auth(AuthRoute)
     case home
 }
+
+enum TabRoute {
+    case home
+    case search
+    case profile
+}

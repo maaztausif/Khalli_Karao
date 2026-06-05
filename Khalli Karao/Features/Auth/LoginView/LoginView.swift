@@ -12,6 +12,7 @@ struct LoginView: View {
 
     
     @EnvironmentObject var authRouter: AuthRouter
+    @EnvironmentObject var router: AppRouter
     @StateObject private var viewModel = LoginViewModel()
 
     var body: some View {
@@ -61,7 +62,7 @@ struct LoginView: View {
                 
             }
             RectangleButton(title: "Sign In", backgroundColor: Color.yellow, textColor: Color.black, borderColor: Color.clear) {
-                //viewmodel
+                viewModel.gotoHome()
             }
             HStack{
                 Spacer()
@@ -75,7 +76,7 @@ struct LoginView: View {
                     .frame(width: 50, height: 1)
                 Spacer()
             }
-            RectangleButton(title: "Continue with Patreon", backgroundColor: Color.red, textColor: Color.white, borderColor: Color.clear,image:"Icon_Patreon",isImage: true) {
+            RectangleButton(title: "Continue with Patreon", backgroundColor: Color.red, textColor: Color.white, borderColor: Color.clear,image:"Icon_Patreon",isImageLeft: true) {
                 viewModel.showPatreonSheet = true
             }
             
@@ -111,6 +112,9 @@ struct LoginView: View {
             PatreonBottomSheet()
                 .presentationDetents([.height(500)])
                 .presentationDragIndicator(.visible)
+        }
+        .onReceive(viewModel.$destinationHome.compactMap { $0 }) { route in
+            router.navigate(to: route)
         }
     }
 }

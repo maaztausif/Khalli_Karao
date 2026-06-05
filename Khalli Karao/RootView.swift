@@ -30,12 +30,10 @@ struct RootView: View {
             AuthContainerView(
                 initialRoute: initialRoute
             )
-            .onAppear {
-                       print("Showing Auth:", initialRoute)
-                   }
+            .environmentObject(router)
 
         case .home:
-            HomeView()
+            MainTabView()
                 .environmentObject(router)
         }
     }

@@ -39,7 +39,7 @@ struct PatreonBottomSheet:View {
             
             ImageAndTextView(image: "bell.fill", text: "Exclusive notifications")
             
-            RectangleButton(title: "Connect With Patreon", backgroundColor: .red, textColor: .white, borderColor: .clear,image: "Patreon",isImage: true) {
+            RectangleButton(title: "Connect With Patreon", backgroundColor: .red, textColor: .white, borderColor: .clear,image: "Patreon",isImageLeft: true) {
                 viewModel.connectToPatreon()
             }
             .padding(.top,20)

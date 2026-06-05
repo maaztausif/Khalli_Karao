@@ -11,6 +11,7 @@ import Combine
 final class LoginViewModel: ObservableObject {
     
     @Published var destination: AuthRoute?
+    @Published var destinationHome: AppRoute?
     @Published var email = ""
     @Published var password = ""
     
@@ -30,9 +31,10 @@ final class LoginViewModel: ObservableObject {
       }
     
     func gotoHome(){
-        if isValidEmail(email) && (validatePassword(password: password, confirmPassword: password) != nil){
-            
-        }
+        destinationHome = .home
+//        if isValidEmail(email) && (validatePassword(password: password, confirmPassword: password) != nil){
+//            
+//        }
     }
     
     

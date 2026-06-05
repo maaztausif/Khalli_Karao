@@ -14,7 +14,8 @@ struct RectangleButton: View {
     let textColor: Color
     let borderColor: Color
     var image:String = ""
-    var isImage:Bool = false
+    var isImageLeft:Bool = false
+    var isImageRight:Bool = false
     let action: () -> Void
   
 //    var isDisabled = false
@@ -22,7 +23,8 @@ struct RectangleButton: View {
         Button(action: action) {
 
             HStack {
-                if isImage{
+                Spacer()
+                if isImageLeft{
                    Image(image)
                         .resizable()
                         .scaledToFit()
@@ -33,12 +35,23 @@ struct RectangleButton: View {
                 Text(title)
                     .font(.system(size: 18, weight: .bold))
                     .foregroundColor(textColor)
-                    .frame(maxWidth: .infinity)
+//                    .frame(maxWidth: .infinity)
                     .frame(height: 56)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(backgroundColor)
-                    )
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 12)
+//                            .fill(backgroundColor)
+//                    )
+                if isImageRight{
+                    Image(systemName: image)
+                         .resizable()
+                         .scaledToFit()
+                         .frame(width: 30, height: 30)
+                         .padding(.leading)
+                         .foregroundStyle(.black)
+
+                }
+                Spacer()
+
                     
             }
             .background(
@@ -59,7 +72,7 @@ struct RectangleButton: View {
     RectangleButton(
         title: "Get Started",
         backgroundColor: .yellow,
-        textColor: .black, borderColor: .black,image: "Patreon",isImage: true,
+        textColor: .black, borderColor: .black,image: "Patreon",isImageLeft: true,
         action: {}
     )
     .padding()
