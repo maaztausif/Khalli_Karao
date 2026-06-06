@@ -40,14 +40,17 @@ struct HomeView: View {
                 .fill(Color.gray)
                 .frame(height: 0.5)
 //                .padding(.horizontal, 20)
+            ScrollView {
+                VStack{
+                    HomeCard(name: "Testing")
+                    
+                    
+                    Spacer()
+                }
+            }
             
         }
-        ScrollView {
-            VStack{
-                HomeCard(name: "Testing")
-                Spacer()
-            }
-        }
+      
     }
 }
 

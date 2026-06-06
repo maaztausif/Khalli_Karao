@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 struct HomeCard: View {
     var name:String

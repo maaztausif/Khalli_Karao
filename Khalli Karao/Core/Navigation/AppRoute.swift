@@ -12,7 +12,7 @@ enum AppRoute {
     case home
 }
 
-enum TabRoute {
+enum TabRoute: Hashable {
     case home
     case search
     case profile
