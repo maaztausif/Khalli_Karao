@@ -10,7 +10,8 @@ import Combine
 
 final class HomeViewModel: ObservableObject {
     
-    @Published var destination:AppRoute?
+    @Published var destination:HomeRoute?
+    
     
     struct question: Identifiable {
         var id: UUID
@@ -39,7 +40,7 @@ final class HomeViewModel: ObservableObject {
         question(id: UUID(), question: "What is your favourite food?")]
     
     func gotoViewMessage(question:String){
-        destination = .recentMessageView(question: question)
+        destination = .viewMessage(question: question)
     }
     
 }

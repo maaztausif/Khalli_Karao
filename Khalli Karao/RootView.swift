@@ -36,9 +36,9 @@ struct RootView: View {
             MainTabView()
                 .environmentObject(router)
             
-        case .recentMessageView(let question):
-            ViewRecentMessageView(question: question)
-                .environmentObject(router)
+//        case .recentMessageView(let question):
+//            ViewRecentMessageView(question: question)
+//                .environmentObject(router)
             
         }
     }

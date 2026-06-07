@@ -10,7 +10,6 @@ enum AppRoute {
     case welcome
     case auth(AuthRoute)
     case home
-    case recentMessageView(question:String)
 }
 
 enum TabRoute: Hashable {
@@ -20,5 +19,5 @@ enum TabRoute: Hashable {
 }
 
 enum HomeRoute: Hashable {
-    case viewMessage(String)
+    case viewMessage(question:String)
 }

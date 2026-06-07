@@ -81,10 +81,11 @@ struct HomeView: View {
                     ForEach (viewModel.questions){ question in
                         
                         Button{
-                            homeRouter.push(
-                                   .viewMessage(question.question)
-                               )
-//                            viewModel.gotoViewMessage(question: question.question)
+                            
+//                            homeRouter.push(
+//                                   .viewMessage(question.question)
+//                               )
+                            viewModel.gotoViewMessage(question: question.question)
 //                            ViewRecentMessageView(question: question.question)
                         }label: {
                             RecentMeesageCard(issueTitle: "Girlfriend Issues", day: "2 days ago", message: "meri girlfriend ko kya karega")
@@ -102,10 +103,12 @@ struct HomeView: View {
                 .presentationDetents([.height(.infinity)])
                 .presentationDragIndicator(.visible)
         }
-        .onReceive(viewModel.$destination.compactMap { $0 }) { route in
-            router.navigate(to: route)
+        .onReceive(
+            viewModel.$destination.compactMap { $0 }
+        ) { route in
+
+            homeRouter.push(route)
         }
-        
     }
     
 }
