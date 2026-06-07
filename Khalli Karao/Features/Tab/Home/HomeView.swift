@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import Combine
 
 struct HomeView: View {
     
     @EnvironmentObject var router: AppRouter
+    @EnvironmentObject var homeRouter: HomeRouter
+    
     @State var selection = ""
     @State private var question = ""
-    
     @StateObject private var viewModel = HomeViewModel()
     
     
@@ -57,7 +59,7 @@ struct HomeView: View {
                         Spacer()
                     }
                     ZStack{
-                 
+                        
                         SendMessageCard(question: "Write Question", text: $question)
                             .blur(radius: 3)
                         RectangleButton(title: "Send Message", backgroundColor: .yellow, textColor: .black, borderColor: .clear) {
@@ -78,7 +80,17 @@ struct HomeView: View {
                     
                     ForEach (viewModel.questions){ question in
                         
-                        RecentMeesageCard(issueTitle: "Girlfriend Issues", day: "2 days ago", message: "meri girlfriend ko kya karega")
+                        Button{
+                            homeRouter.push(
+                                   .viewMessage(question.question)
+                               )
+//                            viewModel.gotoViewMessage(question: question.question)
+//                            ViewRecentMessageView(question: question.question)
+                        }label: {
+                            RecentMeesageCard(issueTitle: "Girlfriend Issues", day: "2 days ago", message: "meri girlfriend ko kya karega")
+                        }
+                        
+                        
                     }
                 }
                 
@@ -89,6 +101,9 @@ struct HomeView: View {
             SendMessageCard(question: "Write Question", text: $question)
                 .presentationDetents([.height(.infinity)])
                 .presentationDragIndicator(.visible)
+        }
+        .onReceive(viewModel.$destination.compactMap { $0 }) { route in
+            router.navigate(to: route)
         }
         
     }

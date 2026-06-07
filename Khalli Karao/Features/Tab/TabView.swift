@@ -8,40 +8,70 @@
 import SwiftUI
 import Combine
 
+import SwiftUI
+
 struct MainTabView: View {
 
     @StateObject private var router = TabRouter()
-
+    @StateObject private var homeRouter = HomeRouter()
+    
     var body: some View {
 
         TabView(selection: $router.selectedTab) {
 
-            HomeView( )
-                .tabItem {
-                    Label(
-                        "Home",
-                        systemImage: "house.fill"
-                    )
-                }
-                .tag(TabRoute.home)
+            // HOME TAB
+            NavigationStack(path: $homeRouter.path) {
 
-            HomeView()
-                .tabItem {
-                    Label(
-                        "Search",
-                        systemImage: "magnifyingglass"
-                    )
-                }
-                .tag(TabRoute.search)
+                HomeView()
+                    .navigationDestination(for: HomeRoute.self) { route in
 
-            ProfileView()
-                .tabItem {
-                    Label(
-                        "Profile",
-                        systemImage: "person.fill"
-                    )
-                }
-                .tag(TabRoute.profile)
+                        switch route {
+
+                        case .viewMessage(let question):
+
+                            ViewRecentMessageView(
+                                question: question
+                            )
+                            .toolbar(.hidden, for: .tabBar)
+                        }
+                    }
+            }
+            .environmentObject(homeRouter)
+            .tabItem {
+                Label(
+                    "Home",
+                    systemImage: "house.fill"
+                )
+            }
+            .tag(TabRoute.home)
+
+            // SEARCH TAB
+            NavigationStack {
+
+                SearchView()
+
+            }
+            .tabItem {
+                Label(
+                    "Search",
+                    systemImage: "magnifyingglass"
+                )
+            }
+            .tag(TabRoute.search)
+
+            // PROFILE TAB
+            NavigationStack {
+
+                ProfileView()
+
+            }
+            .tabItem {
+                Label(
+                    "Profile",
+                    systemImage: "person.fill"
+                )
+            }
+            .tag(TabRoute.profile)
         }
         .environmentObject(router)
     }

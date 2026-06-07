@@ -10,10 +10,15 @@ enum AppRoute {
     case welcome
     case auth(AuthRoute)
     case home
+    case recentMessageView(question:String)
 }
 
 enum TabRoute: Hashable {
     case home
     case search
     case profile
+}
+
+enum HomeRoute: Hashable {
+    case viewMessage(String)
 }

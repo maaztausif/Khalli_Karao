@@ -9,6 +9,9 @@ import SwiftUI
 import Combine
 
 final class HomeViewModel: ObservableObject {
+    
+    @Published var destination:AppRoute?
+    
     struct question: Identifiable {
         var id: UUID
         var question: String
@@ -34,6 +37,10 @@ final class HomeViewModel: ObservableObject {
 //        question(id: UUID(), question: "What is your age?"),
 //        question(id: UUID(), question: "What is your favourite movie?"),
         question(id: UUID(), question: "What is your favourite food?")]
+    
+    func gotoViewMessage(question:String){
+        destination = .recentMessageView(question: question)
+    }
     
 }
 
