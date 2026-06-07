@@ -14,22 +14,25 @@ final class HomeViewModel: ObservableObject {
         var question: String
     }
     
+    @Published var sendMessage = false
+    
+    
     let questions: [question] = [
         question(id: UUID(), question: "What is your name?"),
-        question(id: UUID(), question: "What is your age?"),
-        question(id: UUID(), question: "What is your favourite movie?"),
-        question(id: UUID(), question: "What is your favourite food?"),
-        question(id: UUID(), question: "What is your name?"),
-        question(id: UUID(), question: "What is your age?"),
-        question(id: UUID(), question: "What is your favourite movie?"),
-        question(id: UUID(), question: "What is your favourite food?"),
-        question(id: UUID(), question: "What is your name?"),
-        question(id: UUID(), question: "What is your age?"),
-        question(id: UUID(), question: "What is your favourite movie?"),
-        question(id: UUID(), question: "What is your favourite food?"),
-        question(id: UUID(), question: "What is your name?"),
-        question(id: UUID(), question: "What is your age?"),
-        question(id: UUID(), question: "What is your favourite movie?"),
+//        question(id: UUID(), question: "What is your age?"),
+//        question(id: UUID(), question: "What is your favourite movie?"),
+//        question(id: UUID(), question: "What is your favourite food?"),
+//        question(id: UUID(), question: "What is your name?"),
+//        question(id: UUID(), question: "What is your age?"),
+//        question(id: UUID(), question: "What is your favourite movie?"),
+//        question(id: UUID(), question: "What is your favourite food?"),
+//        question(id: UUID(), question: "What is your name?"),
+//        question(id: UUID(), question: "What is your age?"),
+//        question(id: UUID(), question: "What is your favourite movie?"),
+//        question(id: UUID(), question: "What is your favourite food?"),
+//        question(id: UUID(), question: "What is your name?"),
+//        question(id: UUID(), question: "What is your age?"),
+//        question(id: UUID(), question: "What is your favourite movie?"),
         question(id: UUID(), question: "What is your favourite food?")]
     
 }

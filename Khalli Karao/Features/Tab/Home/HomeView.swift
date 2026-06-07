@@ -11,11 +11,9 @@ struct HomeView: View {
     
     @EnvironmentObject var router: AppRouter
     @State var selection = ""
-    @Binding var question:String
+    @State private var question = ""
     
-    @StateObject var viewModel = HomeViewModel()
-    
-    let users = [1,2,3,4]
+    @StateObject private var viewModel = HomeViewModel()
     
     
     var body: some View {
@@ -58,33 +56,46 @@ struct HomeView: View {
                             .padding(.horizontal)
                         Spacer()
                     }
-                    SendMessageCard(question: "Write Question", text: $question)
-                    
-                    HStack {
-                        Text("Recent Message")
-                            .font(.system(size: 22,weight: .bold))
-                            .foregroundStyle(.black)
-                            .padding(.horizontal)
-                        Spacer()
-                    }
-                    
-                    LazyVStack{
-                        
-                        ForEach (viewModel.questions){ question in
-                            
-                            RecentMeesageCard(issueTitle: "Girlfriend Issues", day: "2 days ago", message: "meri girlfriend ko kya karega")
+                    ZStack{
+                 
+                        SendMessageCard(question: "Write Question", text: $question)
+                            .blur(radius: 3)
+                        RectangleButton(title: "Send Message", backgroundColor: .yellow, textColor: .black, borderColor: .clear) {
+                            viewModel.sendMessage = true
                         }
                     }
-                    
+                }
+                
+                HStack {
+                    Text("Recent Message")
+                        .font(.system(size: 22,weight: .bold))
+                        .foregroundStyle(.black)
+                        .padding(.horizontal)
                     Spacer()
                 }
+                
+                LazyVStack{
+                    
+                    ForEach (viewModel.questions){ question in
+                        
+                        RecentMeesageCard(issueTitle: "Girlfriend Issues", day: "2 days ago", message: "meri girlfriend ko kya karega")
+                    }
+                }
+                
+                Spacer()
             }
-            
+        }
+        .sheet(isPresented: $viewModel.sendMessage) {
+            SendMessageCard(question: "Write Question", text: $question)
+                .presentationDetents([.height(.infinity)])
+                .presentationDragIndicator(.visible)
         }
         
     }
+    
 }
 
+
 #Preview {
-    HomeView(question: .constant(""))
+    HomeView()
 }

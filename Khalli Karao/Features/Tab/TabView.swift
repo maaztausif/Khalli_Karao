@@ -16,7 +16,7 @@ struct MainTabView: View {
 
         TabView(selection: $router.selectedTab) {
 
-            HomeView( question: .constant(""))
+            HomeView( )
                 .tabItem {
                     Label(
                         "Home",
@@ -25,7 +25,7 @@ struct MainTabView: View {
                 }
                 .tag(TabRoute.home)
 
-            HomeView( question: .constant(""))
+            HomeView()
                 .tabItem {
                     Label(
                         "Search",

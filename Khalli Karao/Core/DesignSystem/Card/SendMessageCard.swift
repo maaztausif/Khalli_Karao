@@ -6,21 +6,25 @@
 //
 
 import SwiftUI
-import Combine
 
 struct SendMessageCard: View {
-    
+
     @State private var category = "Select Category"
+
     let question: String
+
     @Binding var text: String
 
+    @State private var editorHeight: CGFloat = 120
+
     var body: some View {
-        VStack{
+
+        VStack {
 
             Text("SELECT SUBJECT")
-                    .foregroundStyle(.gray)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
+                .foregroundStyle(.gray)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
 
             DropdownView(
                 options: [
@@ -30,46 +34,73 @@ struct SendMessageCard: View {
                 ],
                 selectedOption: $category
             )
-            
-            HStack {
-                Text("YOUR MESSAGE")
-                    .foregroundStyle(.gray)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
-            }
-            
-            VStack {
-                
-                TextField(question == "" ? "Write Message" : question, text: $text)
-                    .foregroundColor(.black)
-                    .font(.body)
-                    .multilineTextAlignment(.leading)
-                
+
+            Text(
+                question.isEmpty
+                ? "Write Message"
+                : question
+            )
+            .foregroundColor(.gray)
+            .padding(.top, 8)
+            .padding(.leading, 5)
+            .allowsHitTesting(false)
+
+            ZStack(alignment: .topLeading) {
+
+                if text.isEmpty {
+
+//                    Text(
+//                        question.isEmpty
+//                        ? "Write Message"
+//                        : question
+//                    )
+//                    .foregroundColor(.gray)
+//                    .padding(.top, 8)
+//                    .padding(.leading, 5)
+                }
+
+                TextField(
+                    "Write Message",
+                    text: $text,
+                    axis: .vertical
+                )
+                .lineLimit(4...10)
+                .onChange(of: text) { _, value in
+                    print("Typing: \(value)")
+                }
             }
             .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
             .background(
                 RoundedRectangle(cornerRadius: 12)
                     .fill(Color.gray.opacity(0.2))
             )
-//            .padding(.horizontal)
-            
-            RectangleButton(title: "Send Message", backgroundColor: .yellow, textColor: .black, borderColor: .clear,image: "envelope.fill",isImageRight: true) {
-                //
+
+            RectangleButton(
+                title: "Send Message",
+                backgroundColor: .yellow,
+                textColor: .black,
+                borderColor: .clear,
+                image: "envelope.fill",
+                isImageRight: true
+            ) {
+                print(text)
             }
             .padding(.vertical)
-            
         }
         .padding()
-//        .cornerRadius(20)
         .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color.gray, lineWidth: 2)
-            )
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.gray, lineWidth: 2)
+        )
         .padding()
     }
 }
 
 #Preview {
-    SendMessageCard(question: "asdasd", text: .constant(""))
+    @Previewable @State var message = ""
+
+    SendMessageCard(
+        question: "Write your question...",
+        text: $message
+    )
 }

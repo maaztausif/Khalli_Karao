@@ -98,6 +98,36 @@
             endingLineNumber = "45"
             landmarkName = "createAcount()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "63819D49-7716-4E27-B79D-C1775CECDD0C - ff29bffbed1d6820"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Khalli_Karao.SignupViewModel.createAcount() -&gt; ()"
+                  moduleName = "Khalli Karao.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maaztausif/Documents/Code%20Area/iOS/Khalli%20Karao/Khalli%20Karao/Features/Auth/SignupView/SignupViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45">
+               </Location>
+               <Location
+                  uuid = "63819D49-7716-4E27-B79D-C1775CECDD0C - ff29bffbed1d6820"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Khalli_Karao.SignupViewModel.createAcount() -&gt; ()"
+                  moduleName = "Khalli Karao.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maaztausif/Documents/Code%20Area/iOS/Khalli%20Karao/Khalli%20Karao/Features/Auth/SignupView/SignupViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
