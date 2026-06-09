@@ -11,8 +11,10 @@ import Combine
 final class ViewRecentViewModel: ObservableObject {
     
     @Published var question: String
+    @Published var title: String
 
-     init(question: String) {
+     init(question: String, title: String) {
          self.question = question
+         self.title = title
      }
 }

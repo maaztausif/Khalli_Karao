@@ -85,7 +85,7 @@ struct HomeView: View {
 //                            homeRouter.push(
 //                                   .viewMessage(question.question)
 //                               )
-                            viewModel.gotoViewMessage(question: question.question)
+                            viewModel.gotoViewMessage(question: question.question,title: "\(question.id)")
 //                            ViewRecentMessageView(question: question.question)
                         }label: {
                             RecentMeesageCard(issueTitle: "Girlfriend Issues", day: "2 days ago", message: "meri girlfriend ko kya karega")

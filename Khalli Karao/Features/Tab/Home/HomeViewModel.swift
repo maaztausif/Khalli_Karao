@@ -39,8 +39,8 @@ final class HomeViewModel: ObservableObject {
 //        question(id: UUID(), question: "What is your favourite movie?"),
         question(id: UUID(), question: "What is your favourite food?")]
     
-    func gotoViewMessage(question:String){
-        destination = .viewMessage(question: question)
+    func gotoViewMessage(question:String,title:String){
+        destination = .viewMessage(question: question,title: title)
     }
     
 }

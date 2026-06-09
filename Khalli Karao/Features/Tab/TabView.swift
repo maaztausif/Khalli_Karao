@@ -27,10 +27,11 @@ struct MainTabView: View {
 
                         switch route {
 
-                        case .viewMessage(let question):
+                        case .viewMessage(let question,let title):
 
                             ViewRecentMessageView(
-                                question: question
+                                question: question,
+                                title:title
                             )
                             .toolbar(.hidden, for: .tabBar)
                         }

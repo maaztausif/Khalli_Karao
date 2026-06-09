@@ -12,7 +12,7 @@ struct ViewRecentMessageView: View {
     
     @StateObject private var viewModel: ViewRecentViewModel
 
-    @State private var category = "Select Category"
+//    @State private var category = "Select Category"
 
 //    let question: String
 //
@@ -20,10 +20,11 @@ struct ViewRecentMessageView: View {
 
     @State private var editorHeight: CGFloat = 120
     
-    init(question: String) {
+    init(question: String,title:String) {
         _viewModel = StateObject(
             wrappedValue: ViewRecentViewModel(
-                question: question
+                question: question,
+                title: title
             )
         )
     }
@@ -32,76 +33,55 @@ struct ViewRecentMessageView: View {
 
         VStack {
 
-            Text("SELECT SUBJECT")
-                .foregroundStyle(.gray)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
+            Image("Icon_KhalliKarao")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+                .padding(.vertical)
+            VStack {
+                Text("Subject")
+                    .font(.system(size: 22, weight: .bold))
+//                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
+                    
+                Text(viewModel.title)
+                    .foregroundStyle(.gray)
+                    .font(.system(size: 22, weight: .bold))
 
-            DropdownView(
-                options: [
-                    "Technology",
-                    "Sports",
-                    "Education"
-                ],
-                selectedOption: $category
-            )
-
-            Text(
-                
-                viewModel.question
-            )
-            .foregroundColor(.gray)
-            .padding(.top, 8)
-            .padding(.leading, 5)
-            .allowsHitTesting(false)
-
-            ZStack(alignment: .topLeading) {
-
-//                if text.isEmpty {
-//
-////                    Text(
-////                        question.isEmpty
-////                        ? "Write Message"
-////                        : question
-////                    )
-////                    .foregroundColor(.gray)
-////                    .padding(.top, 8)
-////                    .padding(.leading, 5)
-//                }
-
-//                TextField(
-//                    "Write Message",
-//                    text: $text,
-//                    axis: .vertical
-//                )
-//                .lineLimit(4...10)
-//                .onChange(of: text) { _, value in
-//                    print("Typing: \(value)")
-//                }
+                    .padding(.horizontal)
+                    .padding(.top,5)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.gray.opacity(0.2))
+                    .fill(Color.yellow.opacity(0.2))
             )
+            
 
-            RectangleButton(
-                title: "Send Message",
-                backgroundColor: .yellow,
-                textColor: .black,
-                borderColor: .clear,
-                image: "envelope.fill",
-                isImageRight: true
-            ) {
-//                print(text)
+            
+
+            ScrollView {
+                Text(
+                    
+                    viewModel.question
+                )
+                
+                .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .leading)
+                .foregroundColor(.gray)
+                .padding(.leading, 5)
+                .allowsHitTesting(false)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.gray.opacity(0.1))
+                )
             }
-            .padding(.vertical)
+
+           
+
+            Spacer()
         }
-        .padding()
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.gray, lineWidth: 2)
-        )
         .padding()
     }
 }
@@ -109,8 +89,5 @@ struct ViewRecentMessageView: View {
 #Preview {
     @Previewable @State var message = ""
 
-    SendMessageCard(
-        question: "Write your question...",
-        text: $message
-    )
+    ViewRecentMessageView(question: "q", title: "tester")
 }
