@@ -10,4 +10,29 @@ import Combine
 
 final class ProfileViewModel:ObservableObject{
     
+    @Published var isNotification = false {
+        didSet {
+            print("didSet fired")
+        }
+    }
+    @Published var isVideoAlert:Bool = true
+    
+    func forNotification(){
+        if isNotification{
+            
+        }else{
+            
+        }
+    }
+    
+    func forVideoAlert(){
+        if isVideoAlert{
+            
+        }
+    }
+    
+    func updateNotificationSetting() {
+
+           print("Notification: \(isNotification)")
+       }
 }
