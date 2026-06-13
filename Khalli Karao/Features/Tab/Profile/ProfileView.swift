@@ -94,7 +94,7 @@ struct ProfileView:View {
                 Divider()
                 ToggleRow(
                     title: "New Video Alert",
-                    notificationsEnabled: $viewModel.isNotification,
+                    notificationsEnabled: $viewModel.isVideoAlert,
                 )
             }
             .background(Color.white)
@@ -118,7 +118,12 @@ struct ProfileView:View {
         .ignoresSafeArea(edges: .top)
         .onChange(of: viewModel.isNotification) { _, value in
             
-            print("🔥 ONCHANGE FIRED")
+            print("🔥 ONCHANGE FIRED FOR NOTIFICATION")
+            print("New Value: \(value)")
+        }
+        .onChange(of: viewModel.isVideoAlert) { _, value in
+            
+            print("🔥 ONCHANGE FIRED FOR VIDEO ALERT")
             print("New Value: \(value)")
         }
         .onReceive(viewModel.$destination.compactMap { $0 }) { route in

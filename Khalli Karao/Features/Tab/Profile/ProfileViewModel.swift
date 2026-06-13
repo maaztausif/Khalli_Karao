@@ -17,7 +17,7 @@ final class ProfileViewModel:ObservableObject{
             print("didSet fired")
         }
     }
-    @Published var isVideoAlert:Bool = true
+    @Published var isVideoAlert:Bool = false
     
     func forNotification(){
         if isNotification{
