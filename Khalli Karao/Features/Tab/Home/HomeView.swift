@@ -15,6 +15,7 @@ struct HomeView: View {
     
     @State var selection = ""
     @State private var question = ""
+    @State private var homeQuestion = ""
     @StateObject private var viewModel = HomeViewModel()
     
     
@@ -60,7 +61,7 @@ struct HomeView: View {
                     }
                     ZStack{
                         
-                        SendMessageCard(question: "Write Question", text: $question)
+                        SendMessageCard(question: "Write Question", text: $homeQuestion)
                             .blur(radius: 3)
                         RectangleButton(title: "Send Message", backgroundColor: .yellow, textColor: .black, borderColor: .clear) {
                             viewModel.sendMessage = true
@@ -81,20 +82,12 @@ struct HomeView: View {
                     ForEach (viewModel.questions){ question in
                         
                         Button{
-                            
-//                            homeRouter.push(
-//                                   .viewMessage(question.question)
-//                               )
                             viewModel.gotoViewMessage(question: question.question,title: "\(question.id)")
-//                            ViewRecentMessageView(question: question.question)
                         }label: {
                             RecentMeesageCard(issueTitle: "Girlfriend Issues", day: "2 days ago", message: "meri girlfriend ko kya karega")
                         }
-                        
-                        
                     }
                 }
-                
                 Spacer()
             }
         }
@@ -106,11 +99,9 @@ struct HomeView: View {
         .onReceive(
             viewModel.$destination.compactMap { $0 }
         ) { route in
-
             homeRouter.push(route)
         }
     }
-    
 }
 
 

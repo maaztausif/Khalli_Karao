@@ -29,6 +29,9 @@ struct Row: View {
                 TextField(value, text: $textFeild)
                     .font(.system(size: 18))
                     .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal)
             }else{
                 Text(value)
                     .font(.system(size: 18))
@@ -39,4 +42,9 @@ struct Row: View {
         .padding(.horizontal, 24)
         .frame(height: 90)
     }
+}
+
+#Preview {
+    Row(title: "sa", value: "Asd", isTextField: true, textFeild: .constant(""))
+    
 }
