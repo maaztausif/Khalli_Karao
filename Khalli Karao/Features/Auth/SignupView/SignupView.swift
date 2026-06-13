@@ -34,7 +34,7 @@ struct SignupView: View {
                 VStack {
                     
                     KhalliKaraoView(size: size)
-                        .padding(.top,50)
+                        .padding(.top,100)
                     Text("Welcome Back!")
                         .font(.system(size: 30, weight: .bold, design: .rounded))
                     Text("Sign in to your account")
@@ -139,6 +139,8 @@ struct SignupView: View {
                 }
             }
         }
+        .ignoresSafeArea(edges: .top)
+
     }
 }
 

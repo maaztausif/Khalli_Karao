@@ -12,7 +12,7 @@ enum AuthRoute: Hashable {
     case signup(SignupSource)
     case forgotPassword
     case otp(otpSource)
-    case resetPassword
+    case resetPassword(changePasswordSource)
     case restPasswordSuccess
     case connectToPatreon
 }
@@ -25,4 +25,10 @@ enum SignupSource: Hashable {
 enum otpSource: Hashable{
     case forgetPassword
     case signUp
+    case changePassword
+}
+
+enum changePasswordSource:Hashable{
+    case forgetPassword
+    case updatePassword
 }

@@ -10,6 +10,10 @@ import Combine
 
 final class OtpViewModel:ObservableObject{
     
+    @Published var destination:AuthRoute?
+    @Published var destinationHome:AppRoute?
+    
+    @Published var isVerified = false
     let source:otpSource
     @Published var otp = ""
     
@@ -32,7 +36,7 @@ final class OtpViewModel:ObservableObject{
         self.source = source
     }
     
-    @Published var destination:AuthRoute?
+
 
 
     func navigate(){
@@ -41,6 +45,8 @@ final class OtpViewModel:ObservableObject{
             print("forget")
         case .signUp:
             print("signup")
+        case .changePassword:
+            print("Change Password")
         }
     }
     
@@ -68,15 +74,21 @@ final class OtpViewModel:ObservableObject{
     }
     
     func verifyOTP() {
-        print("OTP Entered: \(otp)")
         switch source {
         case .forgetPassword:
-            destination = .restPasswordSuccess
+            destination = .resetPassword(.forgetPassword)
         case .signUp:
-            print("Qwe")
-//            destination = .home
+            gotoHome()
+        case .changePassword:
+            isVerified = true   // ← triggers onComplete instead of AuthRoute
         }
-
+    }
+    
+    func gotoHome(){
+        destinationHome = .home
+//        if isValidEmail(email) && (validatePassword(password: password, confirmPassword: password) != nil){
+//
+//        }
     }
     
 }

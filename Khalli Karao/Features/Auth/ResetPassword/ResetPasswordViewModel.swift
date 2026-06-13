@@ -10,9 +10,19 @@ import Combine
 
 final class ResetPasswordViewModel:ObservableObject{
     
+    @Published var destination:AuthRoute?
+    @Published var appRoute:AppRoute?
+    
     @Published var password:String = ""
     @Published var confirmPassword:String = ""
+    @Published var isVerified = false
+
     
+    var source:changePasswordSource
+    
+    init(source:changePasswordSource){
+        self.source = source
+    }
     
     var hasMinLength: Bool {
         password.count >= 8
@@ -36,6 +46,18 @@ final class ResetPasswordViewModel:ObservableObject{
             print(error)
         } else {
             print("Valid")
+        }
+    }
+    
+    func setPasswordTap(){
+        switch source {
+        case .forgetPassword:
+            print("forget password")
+            destination = .restPasswordSuccess
+        case .updatePassword:
+            isVerified = true
+            print("update password")
+            
         }
     }
 }

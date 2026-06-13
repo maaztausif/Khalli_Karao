@@ -14,6 +14,7 @@ struct MainTabView: View {
 
     @StateObject private var router = TabRouter()
     @StateObject private var homeRouter = HomeRouter()
+    @StateObject private var profileRouter = ProfileRouter()
     
     var body: some View {
 
@@ -54,26 +55,46 @@ struct MainTabView: View {
             }
             .tabItem {
                 Label(
-                    "Search",
-                    systemImage: "magnifyingglass"
+                    "Videos",
+                    systemImage: "video.fill"
                 )
             }
             .tag(TabRoute.search)
 
             // PROFILE TAB
-            NavigationStack {
+        NavigationStack(path: $profileRouter.path) {
+            ProfileView()
+                .navigationDestination(for: ProfileRoute.self) { route in
+                    switch route {
+                    case .otpView:
+                        OTPView(
+                                viewModel: OtpViewModel(source: .changePassword),
+                                onComplete: {
+                                    profileRouter.push(.passwordChange) // whatever your next profile route is
+                                }
+                            )
+                        .toolbar(.hidden, for: .tabBar)
 
-                ProfileView()
-
-            }
-            .tabItem {
-                Label(
-                    "Profile",
-                    systemImage: "person.fill"
-                )
-            }
-            .tag(TabRoute.profile)
+                    case .passwordChange:
+                        ResetPasswordView(
+                            viewModel: ResetPasswordViewModel(source: .updatePassword),
+                            onComplete: {
+                                profileRouter.popToRoot()
+                            }
+                        )                            .toolbar(.hidden, for: .tabBar)
+                    case .updateProfile:
+                        Text("Coming soon") // placeholder until OTPView compiles
+//                        ResetPasswordView(viewModel: ResetPasswordViewModel.init(source: .updatePassword))
+                            .toolbar(.hidden, for: .tabBar)
+                    }
+                }
         }
-        .environmentObject(router)
+        .environmentObject(profileRouter)
+        .tabItem {
+            Label("Profile", systemImage: "person.fill")
+        }
+        .tag(TabRoute.profile)
+                    }
+                    .environmentObject(router)
     }
 }

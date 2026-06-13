@@ -10,6 +10,8 @@ import Combine
 
 final class ProfileViewModel:ObservableObject{
     
+    @Published var destination:ProfileRoute?
+    @Published var updateSheet:Bool = false
     @Published var isNotification = false {
         didSet {
             print("didSet fired")
@@ -35,4 +37,8 @@ final class ProfileViewModel:ObservableObject{
 
            print("Notification: \(isNotification)")
        }
+    
+    func gotoOtpScreen(){
+        destination = .otpView
+    }
 }

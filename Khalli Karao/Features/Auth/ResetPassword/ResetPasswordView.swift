@@ -10,7 +10,15 @@ import Combine
 
 struct ResetPasswordView:View{
     
-    @StateObject var viewModel = ResetPasswordViewModel()
+    @StateObject var viewModel:ResetPasswordViewModel
+    
+    @EnvironmentObject var authRouter:AuthRouter
+    var onComplete: (() -> Void)?
+
+    init(viewModel: ResetPasswordViewModel, onNavigate: ((AuthRoute) -> Void)? = nil, onComplete: (() -> Void)? = nil) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        self.onComplete = onComplete
+    }
     
     var body: some View{
         GeometryReader { geometry in
@@ -36,7 +44,7 @@ struct ResetPasswordView:View{
                 TextLabelView(text: "Confirm Password")
                     .padding([.leading,.trailing],20)
 
-                CustomTextField(title: "Confirm Password", text: $viewModel.password,isSecureField: true)
+                CustomTextField(title: "Confirm Password", text: $viewModel.confirmPassword,isSecureField: true)
                     .padding([.leading,.trailing])
 
                 VStack(alignment: .leading) {
@@ -58,13 +66,23 @@ struct ResetPasswordView:View{
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 10)
+                
+                RectangleButton(title: "Done", backgroundColor: .yellow, textColor: .black, borderColor: .clear) {
+                    viewModel.setPasswordTap()
+                }
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .onReceive(viewModel.$destination.compactMap{$0}) { route in
+            authRouter.push(route)
+        }
+        .onReceive(viewModel.$isVerified.filter { $0 }) { _ in
+             onComplete?()
+         }
     }
 }
 
 #Preview {
-    ResetPasswordView()
+    ResetPasswordView(viewModel: ResetPasswordViewModel.init(source: .forgetPassword))
 }

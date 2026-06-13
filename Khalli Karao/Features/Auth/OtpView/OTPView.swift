@@ -10,11 +10,19 @@ import Combine
 
 struct OTPView: View {
 
+//    var onNavigate: ((AuthRoute) -> Void)?
+    
     @EnvironmentObject var authRouter:AuthRouter
+
+    @EnvironmentObject var router: AppRouter
+
+    var onComplete: (() -> Void)?
     @StateObject private var viewModel:OtpViewModel
     
-    init(viewModel:OtpViewModel){
+    init(viewModel: OtpViewModel, onNavigate: ((AuthRoute) -> Void)? = nil, onComplete: (() -> Void)? = nil) {
         _viewModel = StateObject(wrappedValue: viewModel)
+//        self.onNavigate = onNavigate
+        self.onComplete = onComplete
     }
 
     var body: some View {
@@ -48,8 +56,18 @@ struct OTPView: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+//            .onReceive(viewModel.$destination.compactMap { $0 }) { route in
+//                        onNavigate?(route)   // ← safe, does nothing if nil
+//            }
             .onReceive(viewModel.$destination.compactMap{$0}) { route in
                 authRouter.push(route)
+            }
+            .onReceive(viewModel.$isVerified.filter { $0 }) { _ in
+                onComplete?()
+            }
+            .onReceive(viewModel.$destinationHome.compactMap { $0 }) { route in
+                router.navigate(to: route)
             }
             .onAppear {
                 viewModel.startTimer()
@@ -58,12 +76,15 @@ struct OTPView: View {
                     print("forget password")
                 case .signUp:
                     print("sign up")
+                case .changePassword:
+                    print("Change Password")
                 }
             }
         }
         .onChange(of: viewModel.otp) { _, newValue in
 
             if newValue.count == 6 {
+                print("otp Fired")
                 viewModel.verifyOTP()
             }
         }

@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 
-//struct UpdateProfileViewModel:ObservableObject{
-////    @Observable
-//}
+final class UpdateProfileViewModel:ObservableObject{
+    @Published var txtName:String = ""
+    @Published var dob:String = ""
+}

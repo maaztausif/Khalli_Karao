@@ -10,7 +10,8 @@ import Combine
 
 struct ProfileView:View {
     @StateObject private var viewModel = ProfileViewModel()
-    
+    @EnvironmentObject var router:ProfileRouter
+    @EnvironmentObject var appRouter: AppRouter
     var body: some View {
         ScrollView {
             VStack(spacing:10) {
@@ -77,8 +78,13 @@ struct ProfileView:View {
             .padding()
             
             RectangleButton(title: "Update", backgroundColor: .yellow, textColor: .black, borderColor: .clear) {
-                
+                viewModel.updateSheet = true
             }
+            
+            RectangleButton(title: "Change Password", backgroundColor: .red, textColor: .white, borderColor: .clear) {
+                viewModel.gotoOtpScreen()
+            }
+
             
             VStack{
                 ToggleRow(
@@ -104,7 +110,8 @@ struct ProfileView:View {
             
             
             RectangleButton(title: "Sign Out", backgroundColor: .white, textColor: .red, borderColor: .red) {
-                
+                appRouter.navigate(to: .auth(.login)) // adjust method/route name once I see AppRouter
+
             }
             
         }
@@ -113,6 +120,17 @@ struct ProfileView:View {
             
             print("🔥 ONCHANGE FIRED")
             print("New Value: \(value)")
+        }
+        .onReceive(viewModel.$destination.compactMap { $0 }) { route in
+
+            print("Navigating to: \(route)")
+
+            router.push(route)
+        }
+        .sheet(isPresented: $viewModel.updateSheet) {
+            ProfileUpdateView()
+                .presentationDetents([.height(.infinity)])
+                .presentationDragIndicator(.visible)
         }
         
     }

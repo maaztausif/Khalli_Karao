@@ -51,8 +51,8 @@ struct AuthContainerView: View {
                             viewModel:OtpViewModel(source :source)
                         )
 
-                    case .resetPassword:
-                        ResetPasswordView()
+                    case .resetPassword(let source):
+                        ResetPasswordView(viewModel: ResetPasswordViewModel(source: source))
                     case .restPasswordSuccess:
                         ResetPasswordSuccessView()
                     case .connectToPatreon:
@@ -86,8 +86,8 @@ struct AuthContainerView: View {
                 source: source
             ))
 
-        case .resetPassword:
-            ResetPasswordView()
+        case .resetPassword(let source):
+            ResetPasswordView(viewModel: ResetPasswordViewModel(source: source))
             
         case .restPasswordSuccess:
             ResetPasswordSuccessView()

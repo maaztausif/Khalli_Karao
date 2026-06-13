@@ -21,3 +21,9 @@ enum TabRoute: Hashable {
 enum HomeRoute: Hashable {
     case viewMessage(question:String,title:String)
 }
+
+enum ProfileRoute: Hashable {
+    case updateProfile
+    case otpView
+    case passwordChange
+}
