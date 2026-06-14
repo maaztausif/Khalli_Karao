@@ -10,10 +10,12 @@ import SwiftUI
 struct SendMessageCard: View {
 
     @State private var category = "Select Category"
-
+    @Environment(\.dismiss) private var dismiss
+    
     let question: String
 
     @Binding var text: String
+    @Binding var isSendButtonClicked:Bool
 
     @State private var editorHeight: CGFloat = 120
 
@@ -49,14 +51,6 @@ struct SendMessageCard: View {
 
                 if text.isEmpty {
 
-//                    Text(
-//                        question.isEmpty
-//                        ? "Write Message"
-//                        : question
-//                    )
-//                    .foregroundColor(.gray)
-//                    .padding(.top, 8)
-//                    .padding(.leading, 5)
                 }
 
                 TextField(
@@ -83,6 +77,8 @@ struct SendMessageCard: View {
                 image: "envelope.fill",
                 isImageRight: true
             ) {
+                dismiss()
+                isSendButtonClicked = true
                 print(text)
             }
             .padding(.vertical)
@@ -98,9 +94,10 @@ struct SendMessageCard: View {
 
 #Preview {
     @Previewable @State var message = ""
+    @Previewable @State var isButton = false
 
     SendMessageCard(
         question: "Write your question...",
-        text: $message
+        text: $message, isSendButtonClicked: $isButton
     )
 }

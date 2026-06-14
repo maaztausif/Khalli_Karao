@@ -20,6 +20,7 @@ enum TabRoute: Hashable {
 
 enum HomeRoute: Hashable {
     case viewMessage(question:String,title:String)
+    case notificationView
 }
 
 enum ProfileRoute: Hashable {

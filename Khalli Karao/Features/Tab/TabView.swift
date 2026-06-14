@@ -35,6 +35,11 @@ struct MainTabView: View {
                                 title:title
                             )
                             .toolbar(.hidden, for: .tabBar)
+                            
+                        case .notificationView:
+                            NotificationView()
+                                .toolbar(.hidden, for: .tabBar)
+
                         }
                     }
             }
@@ -84,7 +89,6 @@ struct MainTabView: View {
                         )                            .toolbar(.hidden, for: .tabBar)
                     case .updateProfile:
                         Text("Coming soon") // placeholder until OTPView compiles
-//                        ResetPasswordView(viewModel: ResetPasswordViewModel.init(source: .updatePassword))
                             .toolbar(.hidden, for: .tabBar)
                     }
                 }
